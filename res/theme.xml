@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="6438a92913d5a.jpg"  />
+    <image name="6438b17be21e2.jpg"  />
+    <image name="activation-background.jpg"  />
+    <image name="back-logoo.jpg"  />
+    <image name="confirmation-background.jpg"  />
+    <image name="dog.jpg"  />
+    <image name="facebook-logo.png" type="multi"  />
+    <image name="Logo.png" type="multi"  />
+</resource>
