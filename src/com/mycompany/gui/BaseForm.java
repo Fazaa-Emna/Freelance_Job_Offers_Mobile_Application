@@ -88,6 +88,7 @@ public class BaseForm extends Form {
         }
           // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
         tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new CoursesDisplay(res).show());
+        tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
     //    tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e ->  {Display.getInstance().exitApplication();
 });

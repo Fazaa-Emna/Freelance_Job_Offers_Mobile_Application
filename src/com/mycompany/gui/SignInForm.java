@@ -72,6 +72,7 @@ public class SignInForm extends BaseForm {
         add(BorderLayout.SOUTH, content);
         signIn.requestFocus();
         signIn.addActionListener(e -> new CoursesDisplay(res).show());
+        signIn.addActionListener(e -> new ServicesDisplay(res).show());
     }
     
 }
