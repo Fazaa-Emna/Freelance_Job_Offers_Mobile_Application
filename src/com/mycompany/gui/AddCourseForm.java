@@ -142,7 +142,7 @@ price.refreshTheme();
         });
          Button backButton = new Button("Back");
         backButton.addActionListener(evt -> {
-            new NewsfeedForm(res).show();
+            new CoursesDisplay(res).show();
         });
 Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
 Label spacer = new Label(" ");

@@ -104,7 +104,7 @@ public class UpdateCourseForm extends BaseForm {
             if (userResponse) {
                 ServiceCourse.getInstance().deleteCourse(course);
                 com.codename1.ui.Dialog.show("Success", "The course has been deleted.", new com.codename1.ui.Command("OK"));
-                new NewsfeedForm(res).show();
+                new CoursesDisplay(res).show();
             }
         });
         Button btnValider = new Button("Modify");

@@ -58,11 +58,11 @@ import java.io.IOException;
  *
  * @author Shai Almog
  */
-public class NewsfeedForm extends BaseForm {
+public class CoursesDisplay extends BaseForm {
    EncodedImage enc,enc2,en;
     Image imgs;
     ImageViewer imgv;
-    public NewsfeedForm(Resources res) {
+    public CoursesDisplay(Resources res) {
           super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
