@@ -55,7 +55,34 @@ public class ServiceCourse {
         }
         return instance;
     }
+ public boolean deleteCourse(Course  t) {
 
+     String url = Statics.BASE_URL + "deleteCourse/" + t.getCid() ;
+     req.setUrl(url);    
+       req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+    public boolean updateCourse(Course  t) {
+
+     String url = Statics.BASE_URL + "updateCourse/" + t.getCid() + "?" + "title=" + t.getTitle() + "&category=" + t.getCategory()+ "&price=" + t.getPrice() + "&description=" + t.getDecription() + "&photo=" + t.getPhoto();
+     req.setUrl(url);    
+       req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
     public boolean addCourse(Course t) {
         System.out.println(t);
         System.out.println("********");

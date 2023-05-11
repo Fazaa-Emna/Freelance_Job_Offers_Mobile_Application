@@ -78,14 +78,14 @@ public class NewsfeedForm extends BaseForm {
         Label spacer1 = new Label();
         Label spacer2 = new Label();
           try {
-            enc = EncodedImage.create("/Capture.png");
-            enc2 = EncodedImage.create("/Capture2.png");
+        //    enc = EncodedImage.create("/c-.net_.png");
+            enc2 = EncodedImage.create("/images.jpeg");
           }
 catch (IOException ex) {
         }
           
-        addTab(swipe, enc, spacer1, "", "", "Study at your own pace");
-        addTab(swipe, enc2, spacer2, "", "", "Prove your skills");
+        addTab(swipe, enc2, spacer1, "", "", "");
+      //  addTab(swipe, enc2, spacer2, "", "", "");
                 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -126,18 +126,15 @@ catch (IOException ex) {
         add(LayeredLayout.encloseIn(swipe, radioContainer));
 
         ButtonGroup barGroup = new ButtonGroup();
-        RadioButton all = RadioButton.createToggle("All courses", barGroup);
+        RadioButton all = RadioButton.createToggle("Check courses", barGroup);
         all.setUIID("SelectBar");
-        RadioButton featured = RadioButton.createToggle("Math", barGroup);
+        RadioButton featured = RadioButton.createToggle("Add course", barGroup);
         featured.setUIID("SelectBar");
-        RadioButton popular = RadioButton.createToggle("Dev", barGroup);
-        popular.setUIID("SelectBar");
-        RadioButton myFavorite = RadioButton.createToggle("My Favorites", barGroup);
-        myFavorite.setUIID("SelectBar");
+        
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
 
         add(LayeredLayout.encloseIn(
-                GridLayout.encloseIn(4, all, featured, popular, myFavorite),
+                GridLayout.encloseIn(2, all, featured),
                 FlowLayout.encloseBottom(arrow)
         ));
 
@@ -149,19 +146,22 @@ catch (IOException ex) {
         });
         bindButtonSelection(all, arrow);
         bindButtonSelection(featured, arrow);
-        bindButtonSelection(popular, arrow);
-        bindButtonSelection(myFavorite, arrow);
-
+       
+ featured.addActionListener(
+                e-> new AddCourseForm(res).show()
+        );
         // special case for rotation
         addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
+        if(all.isSelected()){
         for (Course course : ServiceCourse.getInstance().getAllCourses()) {
 
               try {
               en = EncodedImage.create("/" + course.getPhoto());
             addButton(en,course.getTitle(),false,10,12,course,res);
                     } catch (IOException ex) {
+        }
         }
         }
        
@@ -178,9 +178,9 @@ catch (IOException ex) {
 
  private void addTab(Tabs swipe, Image img, Label spacer, String likesStr, String commentsStr, String text) {
         int size = Math.min(Display.getInstance().getDisplayWidth(), Display.getInstance().getDisplayHeight());
-        if(img.getHeight() < size) {
-            img = img.scaledHeight(size);
-        }
+       
+            img = img.scaledHeight(250);
+        
         Label likes = new Label(likesStr);
 
         likes.setTextPosition(RIGHT);
@@ -188,7 +188,7 @@ catch (IOException ex) {
         Label comments = new Label(commentsStr);
     //    FontImage.setMaterialIcon(comments, FontImage.MATERIAL_CHAT);
         if(img.getHeight() > Display.getInstance().getDisplayHeight() / 2) {
-            img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 2);
+            img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 4);
         }
         ScaleImageLabel image = new ScaleImageLabel(img);
         image.setUIID("Container");
