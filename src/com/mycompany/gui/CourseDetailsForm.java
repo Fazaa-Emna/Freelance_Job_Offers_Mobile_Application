@@ -15,12 +15,10 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
-import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.Toolbar;
-import com.codename1.ui.URLImage;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
@@ -106,6 +104,10 @@ public class CourseDetailsForm extends BaseForm {
         backButton.addActionListener(evt -> {
             new CoursesDisplay(res).show();
         });
+         Button less = new Button("Lessons");
+       less.addActionListener(evt -> {
+            new LessonsDisplay(res).show();
+        });
 Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
 Label spacer = new Label(" ");
 Label spacer1 = new Label(" ");
@@ -115,7 +117,7 @@ Label spacer4 = new Label(" ");
 Label spacer5 = new Label(" ");
 buttonContainer.add(backButton);
 buttonContainer.add(mod);
-        addAll(titleLabel, priceLabel, browser,spacer,spacer1,spacer2,spacer3,spacer4,spacer5,buttonContainer);
+        addAll(titleLabel, priceLabel, browser,spacer,spacer1,spacer2,spacer3,spacer4,spacer5,buttonContainer,less);
 
 
     }

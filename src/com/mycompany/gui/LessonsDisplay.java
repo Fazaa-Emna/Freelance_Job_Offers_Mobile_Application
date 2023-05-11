@@ -1,20 +1,7 @@
 /*
- * Copyright (c) 2016, Codename One
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
- * documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
- * the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
- * and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions 
- * of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
- * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
- * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
- * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package com.mycompany.gui;
 
@@ -24,44 +11,46 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
+import static com.codename1.ui.Component.BOTTOM;
+import static com.codename1.ui.Component.CENTER;
+import static com.codename1.ui.Component.LEFT;
+import static com.codename1.ui.Component.RIGHT;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
 import com.codename1.ui.TextArea;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
-import com.mycomany.entities.Course;
-import com.mycompany.services.ServiceCourse;
-import com.codename1.ui.Image;
-import com.codename1.ui.layouts.BorderLayout;
+import com.mycomany.entities.Lesson;
+import com.mycompany.services.ServiceLesson;
 import java.io.IOException;
 
-
 /**
- * The newsfeed form
  *
- * @author Shai Almog
+ * @author Zahra
  */
-public class CoursesDisplay extends BaseForm {
-   EncodedImage enc,enc2,en;
+public class LessonsDisplay extends BaseForm {
+     EncodedImage enc,enc2,en;
     Image imgs;
     ImageViewer imgv;
-    public CoursesDisplay(Resources res) {
+    public LessonsDisplay(Resources res) {
           super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Courses");
+        setTitle("Lessons");
         getContentPane().setScrollVisible(false);
         
         super.addSideMenu(res);
@@ -138,6 +127,7 @@ catch (IOException ex) {
             arrow.setVisible(true);
             updateArrowPosition(all, arrow);
         });
+        
         bindButtonSelection(all, arrow);
         bindButtonSelection(featured, arrow);
        
@@ -149,13 +139,11 @@ catch (IOException ex) {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
         if(all.isSelected()){
-        for (Course course : ServiceCourse.getInstance().getAllCourses()) {
+        for (Lesson course : ServiceLesson.getInstance().getAllLessons()) {
 
-              try {
-              en = EncodedImage.create("/" + course.getPhoto());
-            addButton(en,course.getTitle(),false,10,12,course,res);
-                    } catch (IOException ex) {
-        }
+        
+            addButton(en,"",false,10,12,course,res);
+                   
         }
         }
        
@@ -204,7 +192,7 @@ catch (IOException ex) {
 
         swipe.addTab("", page1);
     }
-    private void addButton(Image img, String title, boolean liked, int likeCount, int commentCount, Course c,Resources res) {
+    private void addButton(Image img, String title, boolean liked, int likeCount, int commentCount, Lesson c,Resources res) {
         int height = Display.getInstance().convertToPixels(11.5f);
         int width = Display.getInstance().convertToPixels(14f);
         Button image = new Button(img.fill(width, height));
@@ -235,7 +223,7 @@ catch (IOException ex) {
                 ));
         add(cnt);
       //  image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
-       image.addActionListener( evt -> {  new CourseDetailsForm( res, c).show();});
+       //image.addActionListener( evt -> {  new CourseDetailsForm( res, c).show();});
     }
 
     private void bindButtonSelection(Button b, Label arrow) {

@@ -108,16 +108,16 @@ public class ServiceCourse {
             
             List<Map<String,Object>> list = (List<Map<String,Object>>)tasksListJson.get("root");
               for(Map<String,Object> obj : list){
-            Course course = new Course();
+            Course c = new Course();
             double id = Double.parseDouble(obj.get("cid").toString());
-            course.setCid((int)id);
-            course.setTitle((String) obj.get("title"));
-            course.setDecription((String) obj.get("description"));
-            course.setPhoto((String) obj.get("photo"));
+            c.setCid((int)id);
+            c.setTitle((String) obj.get("title"));
+            c.setDecription((String) obj.get("description"));
+            c.setPhoto((String) obj.get("photo"));
             double price = Double.parseDouble(obj.get("price").toString());
-            course.setPrice((int)price);
-            course.setCategory((String) obj.get("category"));
-            courses.add(course);
+            c.setPrice((int)price);
+            c.setCategory((String) obj.get("category"));
+            courses.add(c);
         }
                        
         } catch (IOException ex) {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.services;
 
 import com.codename1.io.CharArrayReader;
@@ -142,7 +137,7 @@ public class Service_Freelance {
     
       
           public void AddFreelance(Freelance c) {
-        String url = Statics.BASE_URL + "newfreelance_mobile/"+ c.getIdbo()+ "/" + c.getEmailbo()+ "/" +c.getCategoryF()+ "/" + c.getDescription()+ "/" +c.getBudget()+ "/" + c.getAdddate()+ "/" +c.getUrllogo()+ "/" + c.getNbapplicants(); //création de l'URL
+        String url = Statics.BASE_URL + "newfreelance_mobile/"+ c.getIdbo()+ "/" + c.getEmailbo()+ "/" +c.getCategoryF()+ "/" + c.getDescription()+ "/" +c.getBudget()+ "/" + c.getAdddate()+ "/" +c.getUrllogo()+ "/" + c.getNbapplicants() ; //création de l'URL
 
         req.setUrl(url);
         req.setPost(false);
