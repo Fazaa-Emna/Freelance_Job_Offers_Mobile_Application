@@ -81,6 +81,7 @@ public class ActivateForm extends BaseForm {
         signUp.requestFocus();
         signUp.addActionListener(e -> new CoursesDisplay(res).show());
         signUp.addActionListener(e -> new ServicesDisplay(res).show());
+        signUp.addActionListener(e -> new NewsfeedForm(res).show());
     }
     
 }

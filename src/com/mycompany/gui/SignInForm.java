@@ -73,6 +73,7 @@ public class SignInForm extends BaseForm {
         signIn.requestFocus();
         signIn.addActionListener(e -> new CoursesDisplay(res).show());
         signIn.addActionListener(e -> new ServicesDisplay(res).show());
+        signIn.addActionListener(e -> new NewsfeedForm(res).show());
     }
     
 }

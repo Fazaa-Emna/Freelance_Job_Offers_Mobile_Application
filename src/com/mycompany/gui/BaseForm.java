@@ -16,7 +16,6 @@
  * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
  * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
-
 package com.mycompany.gui;
 
 import com.codename1.components.ScaleImageLabel;
@@ -89,6 +88,9 @@ public class BaseForm extends Form {
           // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
         tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new CoursesDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
+        tb.addMaterialCommandToSideMenu("Show all offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListeFreelance(res).show());
+        //Blue template == add
+        tb.addMaterialCommandToSideMenu("Freelance Management", FontImage.MATERIAL_EXIT_TO_APP, e -> new FreelanceForm(this).show());
     //    tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e ->  {Display.getInstance().exitApplication();
 });
