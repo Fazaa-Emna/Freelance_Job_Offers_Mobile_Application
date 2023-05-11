@@ -116,8 +116,3 @@
 [0509/022201.342:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 3
 [0509/022201.373:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 5
 [0509/133417.005:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 17
-[0509/160337.721:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 5
-[0509/161749.302:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 17
-[0509/161749.317:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 19
-[0509/162728.143:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 7
-[0509/162728.155:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 9

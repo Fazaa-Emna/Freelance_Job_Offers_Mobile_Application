@@ -11,7 +11,6 @@ import com.codename1.ui.CheckBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import static com.codename1.ui.Component.BOTTOM;
-import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
@@ -82,18 +81,25 @@ public class AddCourseForm extends BaseForm{
          TextField price = new TextField("","price");
 
 Title.setUIID("MyCustomLabel");
-d.setUIID("MyCustomLabel");
-category.setUIID("MyCustomLabel");
-photo.setUIID("MyCustomLabel");
-price.setUIID("MyCustomLabel");
 Style myLabelStyle = UIManager.getInstance().getComponentStyle("MyCustomLabel");
 myLabelStyle.setFgColor(0x000000); 
 Title.refreshTheme();
+d.setUIID("MyCustomLabe");
+Style myLabelStyl = UIManager.getInstance().getComponentStyle("MyCustomLabe");
+myLabelStyl.setFgColor(0x000000); 
 d.refreshTheme();
+category.setUIID("MyCustomLab");
+Style myLabelSty = UIManager.getInstance().getComponentStyle("MyCustomLab");
+myLabelSty.setFgColor(0x000000); 
 category.refreshTheme();
+photo.setUIID("MyCustomL");
+Style myLabelSt = UIManager.getInstance().getComponentStyle("MyCustomL");
+myLabelSt.setFgColor(0x000000); 
 photo.refreshTheme();
+price.setUIID("MyCustom");
+Style myLabel = UIManager.getInstance().getComponentStyle("MyCustom");
+myLabel.setFgColor(0x000000); 
 price.refreshTheme();
-
 //        
 //        TextField Title = new TextField("Title");
 //        Title.setUIID("TextFieldBlack");
@@ -140,21 +146,10 @@ price.refreshTheme();
                 
             }
         });
-         Button backButton = new Button("Back");
-        backButton.addActionListener(evt -> {
-            new NewsfeedForm(res).show();
-        });
-Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
-Label spacer = new Label(" ");
-Label spacer1 = new Label(" ");
-Label spacer2 = new Label(" ");
-Label spacer3 = new Label(" ");
-Label spacer4 = new Label(" ");
-Label spacer5 = new Label(" ");
-buttonContainer.add(backButton);
+        
      
        
-       addAll(Title,d,category,photo,price,btnValider,buttonContainer)  ;  
+       addAll(Title,d,category,photo,price,btnValider)  ;  
         
      
     }

@@ -97,16 +97,13 @@ public class CourseDetailsForm extends BaseForm {
         browser.setPreferredSize(new Dimension(500, 700));
 
 // create the back button and add it to the container
-      
-          Button mod = new Button("Modify Course");
-        mod.addActionListener(evt -> {
-            new UpdateCourseForm(res,course).show();
-        });
-  Button backButton = new Button("Back");
+        Button backButton = new Button("Back");
         backButton.addActionListener(evt -> {
             new NewsfeedForm(res).show();
         });
-Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
+       
+
+Container buttonContainer = new Container(new FlowLayout(Component.LEFT));
 Label spacer = new Label(" ");
 Label spacer1 = new Label(" ");
 Label spacer2 = new Label(" ");
@@ -114,7 +111,6 @@ Label spacer3 = new Label(" ");
 Label spacer4 = new Label(" ");
 Label spacer5 = new Label(" ");
 buttonContainer.add(backButton);
-buttonContainer.add(mod);
         addAll(titleLabel, priceLabel, browser,spacer,spacer1,spacer2,spacer3,spacer4,spacer5,buttonContainer);
 
 
