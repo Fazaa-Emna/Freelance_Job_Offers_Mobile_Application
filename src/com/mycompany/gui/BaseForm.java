@@ -22,6 +22,7 @@ package com.mycompany.gui;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.ui.Component;
 import com.codename1.ui.Display;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
@@ -32,6 +33,7 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import java.io.IOException;
 
 /**
  * Base class for the forms with common functionality
@@ -39,7 +41,7 @@ import com.codename1.ui.util.Resources;
  * @author Shai Almog
  */
 public class BaseForm extends Form {
-
+ EncodedImage enc;
     public BaseForm() {
     }
 
@@ -66,26 +68,29 @@ public class BaseForm extends Form {
         return separator;
     }
 
-    protected void addSideMenu(Resources res) {
+      protected void addSideMenu(Resources res) {
         Toolbar tb = getToolbar();
-        Image img = res.getImage("profile-background.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
-            img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
-        }
-        ScaleImageLabel sl = new ScaleImageLabel(img);
+          try {
+              enc = EncodedImage.create("/art.png" );
+          
+                   
+       
+      
+        ScaleImageLabel sl = new ScaleImageLabel(enc);
         sl.setUIID("BottomPad");
         sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
         
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl,
-                FlowLayout.encloseCenterBottom(
-                        new Label(res.getImage("profile-pic.jpg"), "PictureWhiteBackgrond"))
+                sl
+               
         ));
-       
-           tb.addMaterialCommandToSideMenu("Add Service", FontImage.MATERIAL_UPDATE, e-> new AddServiceForm(res).show());
-        tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
-        tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show()); 
+        } catch (IOException ex) {
+        }
+          // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
+        tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
+    //    tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
+        tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e ->  {Display.getInstance().exitApplication();
+});
 
 
         

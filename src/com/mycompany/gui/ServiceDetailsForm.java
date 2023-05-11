@@ -79,6 +79,7 @@ public class ServiceDetailsForm extends BaseForm {
                 )
         ));
         Label titleLabel = new Label(service.getName());
+    
         Label priceLabel = new Label("Price: " + service.getPrix());
         
         titleLabel.getAllStyles().setFgColor(0x2986cc); // set color to red
@@ -96,11 +97,7 @@ public class ServiceDetailsForm extends BaseForm {
         mod.addActionListener(evt -> {
             new UpdateServiceForm(res,service).show();
         });
-  Button backButton = new Button("Back");
-        backButton.addActionListener(evt -> {
-            new NewsfeedForm(res).show();
-        });
-       
+
 
 Container buttonContainer = new Container(new FlowLayout(Component.LEFT));
 Label spacer = new Label(" ");
@@ -109,7 +106,13 @@ Label spacer2 = new Label(" ");
 Label spacer3 = new Label(" ");
 Label spacer4 = new Label(" ");
 Label spacer5 = new Label(" ");
+  Button backButton = new Button("Back");
+        backButton.addActionListener(evt -> {
+            new ServicesDisplay(res).show();
+        });
+
 buttonContainer.add(backButton);
+buttonContainer.add(mod);
         addAll(titleLabel, priceLabel, browser,spacer,spacer1,spacer2,spacer3,spacer4,spacer5,buttonContainer);
 
 

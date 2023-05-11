@@ -110,7 +110,7 @@ public class UpdateServiceForm extends BaseForm {
             if (userResponse) {
                 ServiceService.getInstance().deleteService(service);
                 com.codename1.ui.Dialog.show("Success", "The service has been deleted.", new com.codename1.ui.Command("OK"));
-                new NewsfeedForm(res).show();
+                new ServicesDisplay(res).show();
             }
         });
          
