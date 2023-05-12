@@ -6,7 +6,7 @@
 package com.mycompany.gui;
 
 
-import com.mycompany.entities.Blog;
+import com.mycomany.entities.Blog;
 import com.mycompany.services.ServiceBlog;
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Button;

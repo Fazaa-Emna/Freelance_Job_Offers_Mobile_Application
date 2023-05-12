@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.entities;
+package com.mycomany.entities;
 
 import com.codename1.ui.util.Resources;
 

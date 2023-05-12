@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.mycompany.services;
-import com.mycompany.entities.Blog;
+import com.mycomany.entities.Blog;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
