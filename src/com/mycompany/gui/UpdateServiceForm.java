@@ -85,10 +85,6 @@ public class UpdateServiceForm extends BaseForm {
 
         addStringValue("category", cat);
 
-       
-
-
-
         name.setUIID("MyCustomLabel");
         descr.setUIID("MyCustomLabel");
          prix.setUIID("MyCustomLabel");

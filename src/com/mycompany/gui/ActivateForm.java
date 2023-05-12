@@ -59,13 +59,13 @@ public class ActivateForm extends BaseForm {
         
         TextField code = new TextField("", "Enter Code", 20, TextField.PASSWORD);
         code.setSingleLineTextArea(false);
-        
+         Button Backoff = new Button("Back");
         Button signUp = new Button("Sign Up");
         Button resend = new Button("Resend");
         resend.setUIID("CenterLink");
         Label alreadHaveAnAccount = new Label("Already have an account?");
         Button signIn = new Button("Sign In");
-        signIn.addActionListener(e -> previous.showBack());
+        signIn.addActionListener(e -> new BackForm(res).show());
         signIn.setUIID("CenterLink");
         
         Container content = BoxLayout.encloseY(
@@ -79,7 +79,8 @@ public class ActivateForm extends BaseForm {
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signUp.requestFocus();
-        signUp.addActionListener(e -> new ServicesDisplay(res).show());
+        signUp.addActionListener(e -> new BackForm(res).show());
+        
     }
     
 }

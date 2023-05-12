@@ -1,21 +1,3 @@
-/*
- * Copyright (c) 2016, Codename One
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
- * documentation files (the "Software"), to deal in the Software without restriction, including without limitation 
- * the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
- * and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all copies or substantial portions 
- * of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
- * INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT 
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
- * CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
- * OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
- */
 package com.mycompany.gui;
 
 import com.codename1.components.ImageViewer;
@@ -30,6 +12,7 @@ import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.FontImage;
+import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -74,7 +57,7 @@ public class ServicesDisplay extends BaseForm {
         super.addSideMenu(res);
         tb.addSearchCommand(e -> {});
         
-        Tabs swipe = new Tabs();
+       Tabs swipe = new Tabs();
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
@@ -167,8 +150,27 @@ catch (IOException ex) {
  featured.addActionListener(
                 e-> new AddServiceForm(res).show()
         );
+ Button screenshotButton = new Button("Capture Screenshot");
+screenshotButton.addActionListener(evt -> {
+    // Get the current form
+    Form currentForm = Display.getInstance().getCurrent();
+
+    // Create an image of the form
+    Image screenshot = Image.createImage(currentForm.getWidth(), currentForm.getHeight());
+    currentForm.paintComponent(screenshot.getGraphics(), true);
+
+    // Display the screenshot
+    ImageViewer viewer = new ImageViewer(screenshot);
+    Form viewerForm = new Form();
+    viewerForm.add(viewer);
+    viewerForm.show();
+});
+add(screenshotButton);
+
 
     }
+    
+    
 
     private void updateArrowPosition(Button b, Label arrow) {
         arrow.getUnselectedStyle().setMargin(LEFT, b.getX() + b.getWidth() / 2 - arrow.getWidth() / 2);

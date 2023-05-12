@@ -7,7 +7,7 @@ package com.mycomany.entities;
 
 /**
  *
- * @author Zahra
+ * @author belha
  */
 /*
  * To change this license header, choose License Headers in Project Properties.
