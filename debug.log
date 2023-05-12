@@ -316,3 +316,23 @@
 [0512/000758.431:ERROR:batching_media_log.cc(35)] MediaEvent: {"pipeline_error":14}
 [0512/000758.432:ERROR:batching_media_log.cc(38)] MediaEvent: {"error":"FFmpegDemuxer: no supported streams"}
 [0512/000758.432:ERROR:batching_media_log.cc(35)] MediaEvent: {"pipeline_error":14}
+[0512/101644.062:INFO:CONSOLE(0)] "A cookie associated with a cross-site resource at https://accounts.google.com/ was set without the `SameSite` attribute. A future release of Chrome will only deliver cookies with cross-site requests if they are set with `SameSite=None` and `Secure`. You can review cookies in developer tools under Application>Storage>Cookies and see more details at https://www.chromestatus.com/feature/5088147346030592 and https://www.chromestatus.com/feature/5633521622188032.", source: https://m.youtube.com/watch?v=to4IDjJVays (0)
+[0512/101644.316:ERROR:batching_media_log.cc(38)] MediaEvent: {"error":"FFmpegDemuxer: no supported streams"}
+[0512/101644.316:ERROR:batching_media_log.cc(38)] MediaEvent: {"error":"FFmpegDemuxer: no supported streams"}
+[0512/101644.318:ERROR:batching_media_log.cc(35)] MediaEvent: {"pipeline_error":14}
+[0512/101644.318:ERROR:batching_media_log.cc(35)] MediaEvent: {"pipeline_error":14}
+[0512/101644.368:ERROR:batching_media_log.cc(38)] MediaEvent: {"error":"FFmpegDemuxer: no supported streams"}
+[0512/101644.368:ERROR:batching_media_log.cc(35)] MediaEvent: {"pipeline_error":14}
+[0512/101646.662:ERROR:batching_media_log.cc(38)] MediaEvent: {"error":"FFmpegDemuxer: no supported streams"}
+[0512/101646.663:ERROR:batching_media_log.cc(35)] MediaEvent: {"pipeline_error":14}
+[0512/215626.498:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 1
+[0512/215626.524:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 17
+[0512/215626.525:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 15
+[0512/222855.949:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 13
+[0512/222856.049:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 15
+[0512/222856.049:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 3
+[0512/223032.899:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 17
+[0512/223032.900:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 19
+[0512/223247.726:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 11
+[0512/223247.798:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 13
+[0512/230210.176:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 17

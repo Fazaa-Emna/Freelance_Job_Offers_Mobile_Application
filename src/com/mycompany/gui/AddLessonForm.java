@@ -7,16 +7,15 @@ package com.mycompany.gui;
 
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.ui.Button;
-import com.codename1.ui.CheckBox;
+import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Component;
-import static com.codename1.ui.Component.BOTTOM;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
-import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
+import com.codename1.ui.List;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
 import com.codename1.ui.events.ActionEvent;
@@ -24,22 +23,25 @@ import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
-import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.mycomany.entities.Course;
+import com.mycomany.entities.Lesson;
 import com.mycompany.services.ServiceCourse;
+import com.mycompany.services.ServiceLesson;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author Zahra
  */
-public class AddCourseForm extends BaseForm{
-    
-      public AddCourseForm(Resources res) {
-          super("Newsfeed", BoxLayout.y());
+public class AddLessonForm extends BaseForm {
+
+    public AddLessonForm(Resources res) {
+        super("Newsfeed", BoxLayout.y());
 
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
@@ -47,21 +49,16 @@ public class AddCourseForm extends BaseForm{
         getTitleArea().setUIID("Container");
         Form previous = Display.getInstance().getCurrent();
         tb.setBackCommand("", e -> previous.showBack());
-        
-      
 
         getContentPane().setScrollVisible(false);
 
         super.addSideMenu(res);
 
-      
-        
-        setTitle("Add a new Course");
+        setTitle("Add a new lesson");
         setLayout(BoxLayout.y());
-   
-        
+
         Image img = res.getImage("profile-background.jpg");
-        if(img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
+        if (img.getHeight() > Display.getInstance().getDisplayHeight() / 3) {
             img = img.scaledHeight(Display.getInstance().getDisplayHeight() / 3);
         }
         ScaleImageLabel sl = new ScaleImageLabel(img);
@@ -72,25 +69,30 @@ public class AddCourseForm extends BaseForm{
                 sl
         ));
 
-     
-        TextField Title = new TextField("","Title");
-        TextField d= new TextField("", "video link");
-         TextField category = new TextField("","category");
-        TextField photo= new TextField("", "photo");
-         TextField price = new TextField("","price");
+        TextField Title = new TextField("", "lesson name");
+        TextField d = new TextField("", "file pdf");
+      
 
-Title.setUIID("MyCustomLabel");
-d.setUIID("MyCustomLabel");
-category.setUIID("MyCustomLabel");
-photo.setUIID("MyCustomLabel");
-price.setUIID("MyCustomLabel");
-Style myLabelStyle = UIManager.getInstance().getComponentStyle("MyCustomLabel");
-myLabelStyle.setFgColor(0x000000); 
-Title.refreshTheme();
-d.refreshTheme();
-category.refreshTheme();
-photo.refreshTheme();
-price.refreshTheme();
+        Title.setUIID("MyCustomLabel");
+        d.setUIID("MyCustomLabel");
+     
+
+        Style myLabelStyle = UIManager.getInstance().getComponentStyle("MyCustomLabel");
+        myLabelStyle.setFgColor(0x000000);
+        Title.refreshTheme();
+        d.refreshTheme();
+     
+
+        ComboBox<String> comboBox = new ComboBox<>();
+        ArrayList<Course> courses = ServiceCourse.getInstance().getAllCourses();
+        
+        HashMap<String, Integer> courseMap = new HashMap<>();
+        for (Course course : courses) {
+            comboBox.addItem(course.getTitle());
+            courseMap.put(course.getTitle(), course.getCid());
+        }
+
+        add(comboBox);
 
 //        
 //        TextField Title = new TextField("Title");
@@ -109,54 +111,47 @@ price.refreshTheme();
 //        price.setUIID("TextFieldBlack");
 //        addStringValue("Title", price);
 //         
-     
-        
-        
-        Button btnValider = new Button("Add Course");
-        
+        Button btnValider = new Button("Add Lesson");
+
         btnValider.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                if ((Title.getText().length()==0)||(d.getText().length()==0)||(category.getText().length()==0)||(photo.getText().length()==0)||(price.getText().length()==0))
+
+                int courseId = courseMap.get(comboBox.getSelectedItem());
+
+                if ((Title.getText().length() == 0) || (d.getText().length() == 0) ) {
                     com.codename1.ui.Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
-                else
-                {
-                    try {
-                         
-                        Course t = new Course(Integer.parseInt(price.getText()), Title.getText(),d.getText(), photo.getText(), category.getText());
-                        if( ServiceCourse.getInstance().addCourse(t))
-                        {
-                           com.codename1.ui.Dialog.show("Success","Course added succesfully",new Command("OK"));
-                        }else
-                            com.codename1.ui.Dialog.show("ERROR", "Server error", new Command("OK"));
-                    } catch (NumberFormatException e) {
-                        com.codename1.ui.Dialog.show("ERROR", "Status must be a number", new Command("OK"));
+                } else {
+
+                    Lesson t = new Lesson(Title.getText(), courseId, d.getText());
+                    if (ServiceLesson.getInstance().addCourse(t)) {
+                        com.codename1.ui.Dialog.show("Success", "Lesson added succesfully", new Command("OK"));
+                    } else {
+                        com.codename1.ui.Dialog.show("ERROR", "Server error", new Command("OK"));
                     }
-                    
+
                 }
-                
-                
+
             }
         });
-         Button backButton = new Button("Back");
+        Button backButton = new Button("Back");
         backButton.addActionListener(evt -> {
-            new CoursesDisplay(res).show();
+            new LessonsDisplay(res).show();
         });
-Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
-Label spacer = new Label(" ");
-Label spacer1 = new Label(" ");
-Label spacer2 = new Label(" ");
-Label spacer3 = new Label(" ");
-Label spacer4 = new Label(" ");
-Label spacer5 = new Label(" ");
-buttonContainer.add(backButton);
-     
-       
-       addAll(Title,d,category,photo,price,btnValider,buttonContainer)  ;  
-        
-     
+        Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
+        Label spacer = new Label(" ");
+        Label spacer1 = new Label(" ");
+        Label spacer2 = new Label(" ");
+        Label spacer3 = new Label(" ");
+        Label spacer4 = new Label(" ");
+        Label spacer5 = new Label(" ");
+        buttonContainer.add(backButton);
+
+        addAll(Title, d,  btnValider, buttonContainer);
+
     }
-       private void addStringValue(String s, Component v) {
+
+    private void addStringValue(String s, Component v) {
         add(BorderLayout.west(new Label(s, "PaddedLabel")).
                 add(BorderLayout.CENTER, v));
         add(createLineSeparator(0xeeeeee));

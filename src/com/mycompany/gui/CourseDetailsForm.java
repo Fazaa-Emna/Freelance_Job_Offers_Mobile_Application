@@ -49,8 +49,7 @@ public class CourseDetailsForm extends BaseForm {
         getTitleArea().setUIID("Container");
         Form previous = Display.getInstance().getCurrent();
         tb.setBackCommand("", e -> previous.showBack());
-      //   getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack());
-      
+        //   getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e-> previous.showBack());
 
         getContentPane().setScrollVisible(false);
 
@@ -94,31 +93,29 @@ public class CourseDetailsForm extends BaseForm {
 
         browser.setPreferredSize(new Dimension(500, 700));
 
-// create the back button and add it to the container
-      
-          Button mod = new Button("Modify Course");
+        // create the back button and add it to the container
+        Button mod = new Button("Modify Course");
         mod.addActionListener(evt -> {
-            new UpdateCourseForm(res,course).show();
+            new UpdateCourseForm(res, course).show();
         });
-  Button backButton = new Button("Back");
+        Button backButton = new Button("Back");
         backButton.addActionListener(evt -> {
             new CoursesDisplay(res).show();
         });
-         Button less = new Button("Lessons");
-       less.addActionListener(evt -> {
+        Button less = new Button("Lessons");
+        less.addActionListener(evt -> {
             new LessonsDisplay(res).show();
         });
-Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
-Label spacer = new Label(" ");
-Label spacer1 = new Label(" ");
-Label spacer2 = new Label(" ");
-Label spacer3 = new Label(" ");
-Label spacer4 = new Label(" ");
-Label spacer5 = new Label(" ");
-buttonContainer.add(backButton);
-buttonContainer.add(mod);
-        addAll(titleLabel, priceLabel, browser,spacer,spacer1,spacer2,spacer3,spacer4,spacer5,buttonContainer,less);
-
+        Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
+        Label spacer = new Label(" ");
+        Label spacer1 = new Label(" ");
+        Label spacer2 = new Label(" ");
+        Label spacer3 = new Label(" ");
+        Label spacer4 = new Label(" ");
+        Label spacer5 = new Label(" ");
+        buttonContainer.add(backButton);
+        buttonContainer.add(mod);
+        addAll(titleLabel, priceLabel, browser, spacer, spacer1,less, spacer2, spacer3, spacer4, spacer5, buttonContainer);
 
     }
 

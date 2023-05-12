@@ -8,6 +8,7 @@ package com.mycompany.gui;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
+import com.codename1.components.ToastBar;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
@@ -109,9 +110,9 @@ catch (IOException ex) {
         add(LayeredLayout.encloseIn(swipe, radioContainer));
 
         ButtonGroup barGroup = new ButtonGroup();
-        RadioButton all = RadioButton.createToggle("Check courses", barGroup);
+        RadioButton all = RadioButton.createToggle("Check lessons", barGroup);
         all.setUIID("SelectBar");
-        RadioButton featured = RadioButton.createToggle("Add course", barGroup);
+        RadioButton featured = RadioButton.createToggle("Add lesson", barGroup);
         featured.setUIID("SelectBar");
         
         Label arrow = new Label(res.getImage("news-tab-down-arrow.png"), "Container");
@@ -132,7 +133,7 @@ catch (IOException ex) {
         bindButtonSelection(featured, arrow);
        
  featured.addActionListener(
-                e-> new AddCourseForm(res).show()
+                e-> new AddLessonForm(res).show()
         );
         // special case for rotation
         addOrientationListener(e -> {
@@ -142,7 +143,7 @@ catch (IOException ex) {
         for (Lesson course : ServiceLesson.getInstance().getAllLessons()) {
 
         
-            addButton(en,"",false,10,12,course,res);
+            addButton(res.getImage("art.png"),course.getName(),false,10,12,course,res);
                    
         }
         }
@@ -222,7 +223,7 @@ catch (IOException ex) {
                         BoxLayout.encloseX(likes, comments)
                 ));
         add(cnt);
-      //  image.addActionListener(e -> ToastBar.showMessage(title, FontImage.MATERIAL_INFO));
+       image.addActionListener(e -> ToastBar.showMessage("lesson of " + c.getCourse_title(), FontImage.MATERIAL_INFO));
        //image.addActionListener( evt -> {  new CourseDetailsForm( res, c).show();});
     }
 

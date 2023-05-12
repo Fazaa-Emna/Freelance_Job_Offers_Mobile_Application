@@ -27,12 +27,43 @@ public class Lesson {
     private int lid; 
     private String name; 
     private String file; 
-
+private String course_title;
+private Course course ;
     public Lesson() {
     }
 
     public Lesson(int lid) {
         this.lid = lid;
+    }
+
+    public String getCourse_title() {
+        return course_title;
+    }
+
+    public void setCourse_title(String course_title) {
+        this.course_title = course_title;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+  public Lesson(String name,int cid,  String file) {
+        this.cid = cid;
+      
+        this.name = name;
+        this.file = file;
+    }
+
+ 
+    public Lesson(Course c , String name, String file) {
+        this.course = c;
+        this.name = name;
+        this.file = file;
     }
 
     public Lesson(int lid, String name, String file) {

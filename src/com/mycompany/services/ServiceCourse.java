@@ -125,7 +125,24 @@ public class ServiceCourse {
         }
         return courses;
     }
-    
+    public List<Course> searchCourses(String searchText) {
+    List<Course> ccc = getAllCourses();
+    List<Course> filteredCourses = new ArrayList<>();
+
+     if(searchText!= null){
+       for (Course course : courses) {
+        if (course.getTitle().toLowerCase().contains(searchText.toLowerCase())
+                || course.getCategory().toLowerCase().contains(searchText.toLowerCase())) {
+            filteredCourses.add(course);
+        }
+        
+    }
+         return filteredCourses;
+     }
+     else
+         return ccc;
+
+}
     public ArrayList<Course> getAllCourses(){
         //String url = Statics.BASE_URL+"/tasks/";
         String url = Statics.BASE_URL+"Allcourses/";

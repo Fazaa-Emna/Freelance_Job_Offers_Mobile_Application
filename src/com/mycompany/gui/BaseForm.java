@@ -40,7 +40,9 @@ import java.io.IOException;
  * @author Shai Almog
  */
 public class BaseForm extends Form {
-  EncodedImage enc;
+
+    EncodedImage enc;
+
     public BaseForm() {
     }
 
@@ -51,14 +53,13 @@ public class BaseForm extends Form {
     public BaseForm(String title, Layout contentPaneLayout) {
         super(title, contentPaneLayout);
     }
-    
-    
+
     public Component createLineSeparator() {
         Label separator = new Label("", "WhiteSeparator");
         separator.setShowEvenIfBlank(true);
         return separator;
     }
-    
+
     public Component createLineSeparator(int color) {
         Label separator = new Label("", "WhiteSeparator");
         separator.getUnselectedStyle().setBgColor(color);
@@ -69,34 +70,56 @@ public class BaseForm extends Form {
 
     protected void addSideMenu(Resources res) {
         Toolbar tb = getToolbar();
-          try {
-              enc = EncodedImage.create("/art.png" );
-          
-                   
-       
-      
-        ScaleImageLabel sl = new ScaleImageLabel(enc);
-        sl.setUIID("BottomPad");
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        
-        tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl
-               
-        ));
+        try {
+            enc = EncodedImage.create("/art.png");
+
+            ScaleImageLabel sl = new ScaleImageLabel(enc);
+            sl.setUIID("BottomPad");
+            sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+
+            tb.addComponentToSideMenu(LayeredLayout.encloseIn(
+                    sl
+            ));
         } catch (IOException ex) {
         }
-          // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
-        tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_UPDATE, e -> new ListBlog(res).show()); 
+        // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
+        tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_UPDATE, e -> new ListBlog(res).show());
         tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new CoursesDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Show all offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListeFreelance(res).show());
         tb.addMaterialCommandToSideMenu(" EVENT", FontImage.MATERIAL_EXIT_TO_APP, e -> new EventDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Freelance Management", FontImage.MATERIAL_EXIT_TO_APP, e -> new FreelanceForm(this).show());
-       // tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e ->  {Display.getInstance().exitApplication();
-});
+        // tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
+        tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e -> {
+            Display.getInstance().exitApplication();
+        });
 
+    }
 
-        
+    protected void addSideMenuB(Resources res) {
+        Toolbar tb = getToolbar();
+        try {
+            enc = EncodedImage.create("/art.png");
+
+            ScaleImageLabel sl = new ScaleImageLabel(enc);
+            sl.setUIID("BottomPad");
+            sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+
+            tb.addComponentToSideMenu(LayeredLayout.encloseIn(
+                    sl
+            ));
+        } catch (IOException ex) {
+        }
+
+        tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_UPDATE, e -> new ListBlog(res).show());
+        tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new CoursesDisplay(res).show());
+        tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
+        tb.addMaterialCommandToSideMenu("Offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListeFreelance(res).show());
+        tb.addMaterialCommandToSideMenu("Events", FontImage.MATERIAL_EXIT_TO_APP, e -> new EventDisplay(res).show());
+       // tb.addMaterialCommandToSideMenu("Freelance Management", FontImage.MATERIAL_EXIT_TO_APP, e -> new FreelanceForm(this).show());
+        tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e -> {
+            Display.getInstance().exitApplication();
+        });
+
     }
 }
