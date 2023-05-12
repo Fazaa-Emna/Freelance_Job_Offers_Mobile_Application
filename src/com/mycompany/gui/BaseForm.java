@@ -86,13 +86,13 @@ public class BaseForm extends Form {
         } catch (IOException ex) {
         }
           // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
-          tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_UPDATE, e -> new ListBlog(res).show()); 
+        tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_UPDATE, e -> new ListBlog(res).show()); 
         tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new CoursesDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Show all offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListeFreelance(res).show());
-        //Blue template == add
+        tb.addMaterialCommandToSideMenu(" EVENT", FontImage.MATERIAL_EXIT_TO_APP, e -> new EventDisplay(res).show());
         tb.addMaterialCommandToSideMenu("Freelance Management", FontImage.MATERIAL_EXIT_TO_APP, e -> new FreelanceForm(this).show());
-    //    tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
+       // tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e ->  {Display.getInstance().exitApplication();
 });
 

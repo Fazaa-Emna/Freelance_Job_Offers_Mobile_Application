@@ -66,7 +66,7 @@ public class ServiceBlog {
       
       
       public ArrayList<Blog> getAllBlogs() {
-        String url = Statics.BASE_URL + "blog/AllBlogs";////////////////////////////////////////////////////////////////////
+        String url = Statics.BASE_URL + "AllBlogs";////////////////////////////////////////////////////////////////////
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -84,10 +84,10 @@ public class ServiceBlog {
       
       
       
-      
+
       
       public void AddBlog(Blog b){
-        String url = Statics.BASE_URL+"blog/addBlogJSON/new?title="+b.getTitle()+"&body="+b.getBody();////////////////////////////////////////////////////////
+        String url = Statics.BASE_URL+"addBlogJSON/new?title="+ b.getTitle() + "&body=" + b.getBody();////////////////////////////////////////////////////////
         req.setUrl(url);
         req.addResponseListener((e)->{
         String str = new String(req.getResponseData());
@@ -100,7 +100,7 @@ public class ServiceBlog {
     public boolean suppBlog(Blog b)
     {
 
-         String url = Statics.BASE_URL + "blog/DeleteBlogJSON/"+b.getId(); ///////////////////////////////
+         String url = Statics.BASE_URL + "DeleteBlogJSON/" + b.getId(); ///////////////////////////////
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -112,12 +112,10 @@ public class ServiceBlog {
           NetworkManager.getInstance().addToQueueAndWait(req);
         return resultOK;
 
-
-
     }
     
     public void modifieBlog(int id, String title, String body) {
-    String url = Statics.BASE_URL + "blog/updateBlogJSON/" + id + "?&title=" + title+"&body="+body;
+    String url = Statics.BASE_URL + "updateBlogJSON/" + id + "?&title=" + title+"&body="+body;
     ConnectionRequest req = new ConnectionRequest();
     req.setUrl(url);
     req.setHttpMethod("PUT");
