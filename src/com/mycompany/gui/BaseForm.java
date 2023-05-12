@@ -34,6 +34,7 @@ import com.codename1.ui.layouts.Layout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import java.io.IOException;
+import javafx.scene.text.Text;
 
 /**
  * Base class for the forms with common functionality
@@ -73,22 +74,27 @@ public class BaseForm extends Form {
           try {
               enc = EncodedImage.create("/art.png" );
           
-                   
-       
-      
+               
         ScaleImageLabel sl = new ScaleImageLabel(enc);
+     
+        //  Label l=new Label("INSTALANCE");
+          Label right = new Label(enc);
+        right.setTextPosition(Component.RIGHT);
         sl.setUIID("BottomPad");
-        sl.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
-        
+        sl.setBackgroundType(Style.BACKGROUND_IMAGE_ALIGNED_CENTER);
+    
         tb.addComponentToSideMenu(LayeredLayout.encloseIn(
-                sl
+                right
                
         ));
         } catch (IOException ex) {
         }
-          // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
+          
+        // tb.addMaterialCommandToSideMenu("Add Course", FontImage.MATERIAL_UPDATE, e-> new AddCourseForm(res).show());
         tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
-    //    tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
+        tb.addMaterialCommandToSideMenu("Lessons", FontImage.MATERIAL_UPDATE, e -> new LessonsDisplay(res).show());
+        tb.addMaterialCommandToSideMenu("Back office", FontImage.MATERIAL_UPDATE, e -> new BackForm(res).show());     
+        // tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
         tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e ->  {Display.getInstance().exitApplication();
 });
 

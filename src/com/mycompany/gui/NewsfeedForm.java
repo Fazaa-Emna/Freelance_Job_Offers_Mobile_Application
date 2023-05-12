@@ -147,7 +147,7 @@ catch (IOException ex) {
         bindButtonSelection(all, arrow);
         bindButtonSelection(featured, arrow);
        
- featured.addActionListener(
+      featured.addActionListener(
                 e-> new AddCourseForm(res).show()
         );
         // special case for rotation

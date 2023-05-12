@@ -121,3 +121,11 @@
 [0509/161749.317:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 19
 [0509/162728.143:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 7
 [0509/162728.155:WARNING:spdy_session.cc(3365)] Received HEADERS for invalid stream 9
+[0511/234956.116:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/234956.368:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/235001.130:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/235001.382:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/235006.144:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/235006.398:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/235011.150:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.
+[0511/235011.412:WARNING:dns_config_service_win.cc(700)] Failed to read DnsConfig.

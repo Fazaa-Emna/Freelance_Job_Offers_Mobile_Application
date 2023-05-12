@@ -106,6 +106,7 @@ public class CourseDetailsForm extends BaseForm {
         backButton.addActionListener(evt -> {
             new NewsfeedForm(res).show();
         });
+           
 Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
 Label spacer = new Label(" ");
 Label spacer1 = new Label(" ");
