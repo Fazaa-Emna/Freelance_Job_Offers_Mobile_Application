@@ -11,17 +11,21 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
+import static com.codename1.ui.Component.BOTTOM;
+import static com.codename1.ui.Component.LEFT;
 import com.codename1.ui.Container;
-import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
+import com.codename1.ui.EncodedImage;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.RadioButton;
 import com.codename1.ui.Tabs;
-import com.codename1.ui.TextField;
+import com.codename1.ui.TextArea;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
@@ -31,18 +35,17 @@ import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
 import com.mycomany.entities.Event;
 import com.mycompany.services.EventService;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 
 /**
  *
  * @author fatha
  */
-public class addEventForm extends BaseForm {
+public class EventListForma extends BaseForm {
 
     Form current;
 
-    public addEventForm(Resources res) {
+    public EventListForma(Resources res) {
         super("Newsfeed", BoxLayout.y()); //herigate men Newsfeed w l formulaire vertical
 
         Toolbar tb = new Toolbar(true);
@@ -85,7 +88,7 @@ public class addEventForm extends BaseForm {
         g.setColor(0xffffff);
         g.setAntiAliased(true);
         g.fillArc(0, 0, size, size, 0, 360);
-        
+
         RadioButton[] rbs = new RadioButton[swipe.getTabCount()];
         FlowLayout flow = new FlowLayout(Component.CENTER);
         flow.setValign(BOTTOM);
@@ -118,7 +121,7 @@ public class addEventForm extends BaseForm {
 
         mesListes.addActionListener((e) -> {
             InfiniteProgress ip = new InfiniteProgress();
-            final Dialog ipDlg = ip.showInifiniteBlocking();
+            final com.codename1.ui.Dialog ipDlg = ip.showInifiniteBlocking();
 
             //  ListReclamationForm a = new ListReclamationForm(res);
             //  a.show();
@@ -143,91 +146,30 @@ public class addEventForm extends BaseForm {
         addOrientationListener(e -> {
             updateArrowPosition(barGroup.getRadioButton(barGroup.getSelectedIndex()), arrow);
         });
-
-        //
-        TextField eventName = new TextField("", "Enter Event Name!!");
-        eventName.setUIID("TextFieldBlack");
-        addStringValue("eventName", eventName);
-
-        TextField description = new TextField("", "entrer description!!");
-        description.setUIID("TextFieldBlack");
-        addStringValue("Description", description);
-
-        TextField location = new TextField("", "Enter Location!!");
-        location.setUIID("TextFieldBlack");
-        addStringValue("Location", location);
-
-        TextField maxAttendees = new TextField("", "Enter Max Attendees!!");
-        maxAttendees.setUIID("TextFieldBlack");
-        addStringValue("MaxAttendees", maxAttendees);
-
-        Button btnAjouter = new Button("Ajouter");
-        addStringValue("", btnAjouter);
-        eventName.refreshTheme();
-        description.refreshTheme();
-        location.refreshTheme();
-        maxAttendees.refreshTheme();
-
-        //onclick button event 
-        btnAjouter.addActionListener((e) -> {
-
-            try {
-
-                if (eventName.getText().equals("") || description.getText().equals("")) {
-                    Dialog.show("Please verify your information", "", "Cancel", "OK");
-                } else {
-                    InfiniteProgress ip = new InfiniteProgress(); //Loading  after insert data
-
-                    final Dialog iDialog = ip.showInfiniteBlocking();
-
-                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-
-                    //njibo iduser men session (current user)
-                    Event event = new Event(String.valueOf(eventName.getText()
-                    ).toString(),
-                            String.valueOf(description.getText()).toString(),
-                            
-                            format.format(new Date()),
-                            format.format(new Date()),
-                            String.valueOf(location.getText()).toString(),
-                            Integer.parseInt(String.valueOf(maxAttendees.getText())),
-                            
-                            format.format(new Date())
-                    );
-
-                    System.out.println("data  event == " + event);
-
-                    //appelle methode ajouterReclamation mt3 service Reclamation bch nzido données ta3na fi base 
-                    EventService.getInstance().addEvent(event);
-
-                    iDialog.dispose(); //na7io loading ba3d ma3mlna ajout
-
-                    //ba3d ajout net3adaw lel ListREclamationForm
-                //    new EventListForm(res).show();
-                    refreshTheme();//Actualisation
-
-                }
-
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-        });
-    }
-
-    private void addStringValue(String s, Component v) {
-
-        add(BorderLayout.west(new Label(s, "PaddedLabel"))
-                .add(BorderLayout.CENTER, v));
-        add(createLineSeparator(0xeeeeee));
+        ArrayList<Event>list = EventService.getInstance().displayEvents();
+        for(Event rec: list){
+            String urlImage ="back-logo.jpeg";//image statique pour le moment ba3d taw fi  videos jayin nwarikom image 
+            
+             Image placeHolder = Image.createImage(120, 90);
+             EncodedImage enc =  EncodedImage.createFromImage(placeHolder,false);
+             URLImage urlim = URLImage.createToStorage(enc, urlImage, urlImage, URLImage.RESIZE_SCALE);
+             
+                addButton(urlim,rec,res);
+        
+                ScaleImageLabel image = new ScaleImageLabel(urlim);
+                
+                Container containerImg = new Container();
+                
+                image.setBackgroundType(Style.BACKGROUND_IMAGE_SCALED_FILL);
+        }
     }
 
     private void addTab(Tabs swipe, Label spacer, Image image, String string, String text, Resources res) {
-        if (swipe == null ) {
+        if (swipe == null) {
             System.out.println("swipe is null");
             return; // do nothing and return
         }
-if (image == null ) {
+        if (image == null) {
             System.out.println("image is null");
             return; // do nothing and return
         }
@@ -275,4 +217,89 @@ if (image == null ) {
         l.getUnselectedStyle().setMargin(LEFT, btn.getX() + btn.getWidth() / 2 - l.getWidth() / 2);
         l.getParent().repaint();
     }
+
+    private void addButton(Image img, Event event, Resources res) {
+         int height = Display.getInstance().convertToPixels(11.5f);
+        int width = Display.getInstance().convertToPixels(14f);
+        
+        Button image = new Button(img.fill(width, height));
+        image.setUIID("Label");
+        Container cnt = BorderLayout.west(image);
+        
+        
+        //kif nzidouh  ly3endo date mathbih fi codenamone y3adih string w y5alih f symfony dateTime w ytab3ni cha3mlt taw yjih
+        Label registrationdeadlineTxt = new Label("Registration deadline : "+event.getRegistrationdeadline(),"NewsTopLine2");
+        Label eventNameTxt = new Label("Event Name : "+event.getEventName(),"NewsTopLine2");
+        Label descriptionTxt = new Label("description : "+event.getDescription(),"NewsTopLine2" );
+        Label locationTxt = new Label("location : "+event.getLocation(),"NewsTopLine2" );
+        Label maxAttendeesTxt = new Label("Max Attendees : "+event.getMaxAttendees(), "NewsTopLine2");
+        
+        createLineSeparator();
+        
+        /*if(event.getEventName().equals("")) {
+            eventNameTxt.setText("non Traitée");
+        }
+        else 
+            eventNameTxt.setText("Traitée");
+       */
+        
+        //supprimer button
+        Label lSupprimer = new Label(" ");
+        lSupprimer.setUIID("NewsTopLine");
+        Style supprmierStyle = new Style(lSupprimer.getUnselectedStyle());
+        supprmierStyle.setFgColor(0xf21f1f);
+        
+        FontImage suprrimerImage = FontImage.createMaterial(FontImage.MATERIAL_DELETE, supprmierStyle);
+        lSupprimer.setIcon(suprrimerImage);
+        lSupprimer.setTextPosition(RIGHT);
+        
+        //click delete icon
+        /*lSupprimer.addPointerPressedListener(l -> {
+            
+            Dialog dig = new Dialog("Suppression");
+            
+            if(dig.show("Suppression","Vous voulez supprimer ce reclamation ?","Annuler","Oui")) {
+                dig.dispose();
+            }
+            else {
+                dig.dispose();
+                 }
+                //n3ayto l suuprimer men service Reclamation
+                if(EventService.getInstance().deleteEvent(event.getEventId())) {
+                    new EventListForma(res).show();
+                }
+           
+        });*/
+        
+        //Update icon 
+        Label lModifier = new Label(" ");
+        lModifier.setUIID("NewsTopLine");
+        Style modifierStyle = new Style(lModifier.getUnselectedStyle());
+        modifierStyle.setFgColor(0xf7ad02);
+        
+        FontImage mFontImage = FontImage.createMaterial(FontImage.MATERIAL_MODE_EDIT, modifierStyle);
+        lModifier.setIcon(mFontImage);
+        lModifier.setTextPosition(LEFT);
+        
+        
+        /*lModifier.addPointerPressedListener(l -> {
+            //System.out.println("hello update");
+           // new updateEventForm(res,rec).show();
+        });*/
+        
+        
+        cnt.add(BorderLayout.CENTER,BoxLayout.encloseY(
+                
+                BoxLayout.encloseX(eventNameTxt),
+                BoxLayout.encloseX(descriptionTxt),
+                BoxLayout.encloseX(locationTxt),
+                BoxLayout.encloseX(maxAttendeesTxt),
+                BoxLayout.encloseX(registrationdeadlineTxt,lModifier,lSupprimer)));
+        
+        
+        
+        add(cnt);
+         
+    }
+
 }

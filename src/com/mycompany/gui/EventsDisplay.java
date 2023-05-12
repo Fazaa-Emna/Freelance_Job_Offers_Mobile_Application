@@ -21,10 +21,13 @@ package com.mycompany.gui;
 import com.codename1.components.ImageViewer;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.components.SpanLabel;
-import com.codename1.components.ToastBar;
 import com.codename1.ui.Button;
 import com.codename1.ui.ButtonGroup;
 import com.codename1.ui.Component;
+import static com.codename1.ui.Component.BOTTOM;
+import static com.codename1.ui.Component.CENTER;
+import static com.codename1.ui.Component.LEFT;
+import static com.codename1.ui.Component.RIGHT;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
@@ -49,23 +52,19 @@ import java.io.IOException;
 
 
 
-/**
- * The newsfeed form
- *
- * @author Shai Almog
- */
-public class NewsfeedForm extends BaseForm {
+
+public class EventsDisplay extends BaseForm {
 
     EncodedImage enc, enc2, en;
     Image imgs;
     ImageViewer imgv;
 
-    public NewsfeedForm(Resources res) throws IOException {
+    public EventsDisplay(Resources res) throws IOException {
         super("Newsfeed", BoxLayout.y());
         Toolbar tb = new Toolbar(true);
         setToolbar(tb);
         getTitleArea().setUIID("Container");
-        setTitle("Courses");
+        setTitle("Events");
         getContentPane().setScrollVisible(false);
 
         super.addSideMenu(res);
@@ -76,14 +75,13 @@ public class NewsfeedForm extends BaseForm {
 
         Label spacer1 = new Label();
         Label spacer2 = new Label();
-        try {
-            //    enc = EncodedImage.create("/c-.net_.png");
-            enc2 = EncodedImage.create("/images.jpeg");
-        } catch (IOException ex) {
-        }
+        
+               enc = EncodedImage.create("/java.jpg");
+         //   enc2 = EncodedImage.create("com.mycompany.images/64.jpg");
+        
 
-        addTab(swipe, enc2, spacer1, "", "", "");
-        //  addTab(swipe, enc2, spacer2, "", "", "");
+        addTab(swipe, enc, spacer1, "", "", "");
+         // addTab(swipe, enc2, spacer2, "", "", "");
 
         swipe.setUIID("Container");
         swipe.getContentPane().setUIID("Container");
@@ -156,7 +154,7 @@ public class NewsfeedForm extends BaseForm {
             for (Event event : EventService.getInstance().displayEvents()) {
 
                 
-                    en = EncodedImage.create("images.jpeg");
+                    //en = EncodedImage.create("images.jpeg");
                     addButton(en, event.getEventName(), false, 10, 12, event, res);
                
             }
@@ -241,7 +239,7 @@ public class NewsfeedForm extends BaseForm {
             try {
                 new EventDetailsForm(res, e).show();
             } catch (IOException ex) {
-              
+                
             }
             
         });

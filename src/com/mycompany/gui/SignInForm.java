@@ -29,6 +29,8 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import java.io.IOException;
+
 
 /**
  * Sign in UI
@@ -71,7 +73,13 @@ public class SignInForm extends BaseForm {
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signIn.requestFocus();
-        signIn.addActionListener(e -> new NewsfeedForm(res).show());
+        signIn.addActionListener(e -> {
+            try {
+                new EventsDisplay(res).show();
+            } catch (IOException ex) {
+                System.out.println("fama erreur fi sign in");
+            }
+        });
     }
     
 }
