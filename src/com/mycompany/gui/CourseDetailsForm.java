@@ -106,6 +106,23 @@ public class CourseDetailsForm extends BaseForm {
         less.addActionListener(evt -> {
             new LessonsDisplay(res).show();
         });
+        Button screenshotButton = new Button("Capture Screenshot");
+screenshotButton.addActionListener(evt -> {
+    // Get the current form
+    Form currentForm = Display.getInstance().getCurrent();
+
+    // Create an image of the form
+    Image screenshot = Image.createImage(currentForm.getWidth(), currentForm.getHeight());
+    currentForm.paintComponent(screenshot.getGraphics(), true);
+
+    // Display the screenshot
+    ImageViewer viewer = new ImageViewer(screenshot);
+    Form viewerForm = new Form();
+    viewerForm.add(viewer);
+    viewerForm.show();
+});
+add(screenshotButton);
+
         Container buttonContainer = new Container(new FlowLayout(Component.CENTER));
         Label spacer = new Label(" ");
         Label spacer1 = new Label(" ");

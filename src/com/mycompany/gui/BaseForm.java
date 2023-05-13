@@ -112,10 +112,10 @@ public class BaseForm extends Form {
         }
 
         tb.addMaterialCommandToSideMenu("Blog", FontImage.MATERIAL_UPDATE, e -> new ListBlog(res).show());
-        tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new CoursesDisplay(res).show());
-        tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServicesDisplay(res).show());
-        tb.addMaterialCommandToSideMenu("Offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new ListeFreelance(res).show());
-        tb.addMaterialCommandToSideMenu("Events", FontImage.MATERIAL_EXIT_TO_APP, e -> new EventDisplay(res).show());
+        tb.addMaterialCommandToSideMenu("Courses", FontImage.MATERIAL_UPDATE, e -> new BackForm(res).show());
+        tb.addMaterialCommandToSideMenu("Services", FontImage.MATERIAL_UPDATE, e -> new ServBack(res).show());
+        tb.addMaterialCommandToSideMenu("Offers", FontImage.MATERIAL_EXIT_TO_APP, e -> new FreeB(res).show());
+        tb.addMaterialCommandToSideMenu("Events", FontImage.MATERIAL_EXIT_TO_APP, e -> new EvBack(res).show());
        // tb.addMaterialCommandToSideMenu("Freelance Management", FontImage.MATERIAL_EXIT_TO_APP, e -> new FreelanceForm(this).show());
         tb.addMaterialCommandToSideMenu("Exit", FontImage.MATERIAL_EXIT_TO_APP, e -> {
             Display.getInstance().exitApplication();
